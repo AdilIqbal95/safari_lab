@@ -59,3 +59,29 @@ INSERT INTO assignment (employee_id, enclosure_id, day) VALUES (3,3,'Tuesday');
 INSERT INTO assignment (employee_id, enclosure_id, day) VALUES (4,4,'Wednesday');
 INSERT INTO assignment (employee_id, enclosure_id, day) VALUES (5,5,'Thursday');
 
+
+SELECT animal.name FROM enclosure
+RIGHT JOIN animal
+ON animal.enclosure_id = enclosure.id
+WHERE enclosure.name = 'Tiger enclosure';
+
+SELECT staff.name FROM enclosure
+INNER JOIN assignment
+ON assignment.enclosure_id = enclosure.id
+INNER JOIN staff
+ON staff.id = assignment.employee_id
+WHERE enclosure.name = 'Eagle enclosure';
+
+SELECT staff.name FROM enclosure
+INNER JOIN assignment
+ON assignment.enclosure_id = enclosure.id
+INNER JOIN staff
+ON staff.id = employee_id
+WHERE enclosure.closedformaintenance = 'true';
+
+SELECT enclosure.name FROM enclosure
+RIGHT JOIN animal
+ON animal.enclosure_id = enclosure.id
+WHERE animal.age = (SELECT MAX(animal.age) FROM animal);
+
+
