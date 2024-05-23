@@ -33,7 +33,6 @@ CREATE TABLE assignment (
 );
 
 
-
 INSERT INTO enclosure (name, capacity, closedForMaintenance) VALUES ('Tiger enclosure', 3, 'false');
 INSERT INTO enclosure (name, capacity, closedForMaintenance) VALUES ('Lion enclosure', 2, 'false');
 INSERT INTO enclosure (name, capacity, closedForMaintenance) VALUES ('Penguin enclosure', 10, 'false');
@@ -84,4 +83,17 @@ RIGHT JOIN animal
 ON animal.enclosure_id = enclosure.id
 WHERE animal.age = (SELECT MAX(animal.age) FROM animal);
 
+SELECT Count(Distinct (animal.type)) FROM animal 
+INNER JOIN assignment
+ON assignment.enclosure_id = animal.enclosure_id
+INNER JOIN staff
+ON staff.id = assignment.employee_id
+WHERE staff.name = 'Bob';
+
+SELECT COUNT(staff.name) FROM enclosure
+INNER JOIN assignment
+ON assignment.enclosure_id = enclosure.id
+INNER JOIN staff
+ON staff.id = assignment.employee_id
+WHERE enclosure.name = 'Tiger enclosure';
 
